@@ -74,8 +74,8 @@ const LiveLocation = () => {
     <div style={{ textAlign: 'center', marginTop: '2px', fontSize: '1rem', color: '#333', fontWeight: 'bold', backgroundColor: '#dae0aa', padding: '20px', borderRadius: '10px', 
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', width: '80%', maxWidth: '600px', margin: 'auto', border: '2px solid rgb(243, 158, 158)', zIndex: 10
      }}>
-      <img src={Logo} alt="Logo" style={{ width: '40px', height: '40px', marginBottom: '5px', borderRadius: '50px', border: '1px solid rgb(176, 212, 118)' }} />
-      <h1 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '500', width: '100%', fontFamily: 'Arial, sans-serif', color: '#32501d', padding: '2px', textDecoration: 'underline' }}>
+      <img src={Logo} alt="Logo" style={{ width: '40px', height: '40px', marginBottom: '0px', borderRadius: '50px', border: '1px solid rgb(176, 212, 118)' }} />
+      <h1 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '500', width: '100%', fontFamily: 'Arial, sans-serif', color: '#32501d', padding: '0px', textDecoration: 'underline' }}>
         Live Location</h1>
       {error ? (
         <p>Error: {error}</p>
@@ -86,7 +86,7 @@ const LiveLocation = () => {
             <br/>
             <button onClick={getUserAddress}>Get Location</button>
             <br />
-            <input type="text" id="addr" placeholder="Address will appear here" style={{ width: '80%', padding: '5px', borderRadius: '5px', border: '1px solid #ccc', marginTop: '10px' }} />
+            <input type="label" id="addr" placeholder="Address will appear here" readOnly style={{ width: '80%', padding: '5px', borderRadius: '5px', border: '1px solid #333', marginTop: '10px' }} />
         </div>
       )}
     </div>
