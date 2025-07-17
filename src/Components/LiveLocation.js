@@ -1,5 +1,6 @@
 import React from 'react'
 import Logo from '../Assets/Bhaskar.png'
+import Location_icon from '../Assets/logo.png'
 import './LiveLocation.css'
 
 // This component is a placeholder for the Live Location feature
@@ -89,8 +90,11 @@ const LiveLocation = () => {
             <p>Longitude: {longitude}</p>
             <br/>
             <button onClick={getUserAddress}>Get Location</button>
-            <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '600', width: '70%', fontFamily: 'Arial, sans-serif', color: '#236902ff', padding: '5px'}}>(Press the button after lattitude and longitude values are fetched)</p>
-            <input type="label" id="addr" placeholder="Address will appear here" readOnly style={{ width: '80%', padding: '5px', borderRadius: '5px', border: '1px solid #333', marginTop: '10px', font: 'inherit' }} />
+            <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '200', width: '70%', fontFamily: 'Arial, sans-serif', color: '#1f3f01ff', padding: '5px'}}>(Press the button after lattitude and longitude values are fetched)</p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', marginTop: '5px' }}>
+              <img src={Location_icon} alt="Location Icon" style={{ width: '20px', height: '20px'}} />
+              <input type="label" id="addr" placeholder="Address will appear here" readOnly style={{ width: '80%', border: '1px solid #fff', fontWeight: '600', borderRadius: '5px', height: '25%' }} />
+            </div>
         </div>
       )}
     </div>
