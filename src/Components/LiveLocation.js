@@ -38,13 +38,16 @@ const LiveLocation = () => {
                 if (data && data.display_name) {
 
                    document.getElementById('addr').value = data.display_name;
+
                 }
+
             } catch (error) {
 
                 handleLocationError(error);
 
             }
         }
+
     };
 
     const getLocation = (position) => {
@@ -81,12 +84,13 @@ const LiveLocation = () => {
         <p>Error: {error}</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '600', width: '100%', fontFamily: 'Arial, sans-serif', color: '#975c5c', padding: '10px' }}>
+            <br/>
             <p>Latitude: {lattitude}</p>
             <p>Longitude: {longitude}</p>
             <br/>
             <button onClick={getUserAddress}>Get Location</button>
-            <br />
-            <input type="label" id="addr" placeholder="Address will appear here" readOnly style={{ width: '80%', padding: '5px', borderRadius: '5px', border: '1px solid #333', marginTop: '10px' }} />
+            <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '600', width: '70%', fontFamily: 'Arial, sans-serif', color: '#236902ff', padding: '5px'}}>(Press the button after lattitude and longitude values are fetched)</p>
+            <input type="label" id="addr" placeholder="Address will appear here" readOnly style={{ width: '80%', padding: '5px', borderRadius: '5px', border: '1px solid #333', marginTop: '10px', font: 'inherit' }} />
         </div>
       )}
     </div>
