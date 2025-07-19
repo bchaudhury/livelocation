@@ -62,11 +62,17 @@ const LiveLocation = () => {
                     setError(null);
                 },
                 (err) => {
-                    setError(err.message);
+
+                    const error = new Error("Geolocation error");
+                    error.code = err.code;
+                    handleLocationError(error);
+
                 }
             );
         } else {
+
             setError("Geolocation is not supported by this browser.");
+            
         }
     };
 
@@ -75,8 +81,8 @@ const LiveLocation = () => {
     }, []);
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '2px', fontSize: '1rem', color: '#333', fontWeight: 'bold', backgroundColor: '#dae0aa', padding: '20px', borderRadius: '10px', 
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', width: '80%', maxWidth: '600px', margin: 'auto', border: '2px solid rgb(243, 158, 158)', zIndex: 10
+    <div style={{ textAlign: 'center', marginTop: '2px', fontSize: '1rem', color: '#333', fontWeight: 'bold', backgroundColor: '#dae0aa', padding: '2px', borderRadius: '10px', 
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', width: '80%', maxWidth: '400px', margin: 'auto', border: '2px solid rgb(243, 158, 158)', zIndex: '10', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center'
      }}>
       <img src={Logo} alt="Logo" style={{ width: '40px', height: '40px', marginBottom: '0px', borderRadius: '50px', border: '1px solid rgb(176, 212, 118)' }} />
       <h1 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '500', width: '100%', fontFamily: 'Arial, sans-serif', color: '#32501d', padding: '0px', textDecoration: 'underline' }}>
