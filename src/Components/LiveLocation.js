@@ -10,6 +10,8 @@ const LiveLocation = () => {
     const [longitude, setLongitude] = React.useState('fetching.. ');
     const [error, setError] = React.useState(null);
 
+    // Function to handle errors related to geolocation
+
     const handleLocationError = (error) => {
         switch(error.code) {
             case error.PERMISSION_DENIED:
@@ -86,8 +88,10 @@ const LiveLocation = () => {
         }
     };
 
+    // Use useEffect to get the user's location when the component mounts
     React.useEffect(() => {
         getLocation();
+        // eslint-disable-next-line
     }, []);
 
   return (
@@ -101,16 +105,16 @@ const LiveLocation = () => {
       {error ? (
         <p>Error: {error}</p>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '600', width: '90%', color: '#975c5c', padding: '10px', fontSize: '10px', border: '2px solid', borderRadius: '10px', backgroundColor: '#f7e3a1ff' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '600', width: '90%', color: '#912c04ff', padding: '10px', fontSize: '10px', border: '2px solid', borderRadius: '10px', backgroundColor: '#e4c49bff' }}>
             
             <p>Latitude: {lattitude}</p>
             <p>Longitude: {longitude}</p>
 
             <button onClick={getUserAddress}>Get Location</button>
-            <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '200', width: '70%', fontFamily: 'Arial, sans-serif', color: '#1f3f01ff', padding: '5px', fontSize: '12px'}}>** Click the button after lattitude and longitude values are fetched.</p>
+            <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '200', width: '70%', fontFamily: 'Arial, sans-serif', color: '#3d3510ff', padding: '5px', fontSize: '12px'}}>** Click the button after lattitude and longitude values are fetched.</p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', marginTop: '5px' }}>
               <img src={Location_icon} alt="Location Icon" style={{ width: '30px', height: '30px'}} />
-              <input type="text" id="addr" placeholder="Address will appear here" readOnly style={{height: '30px', fontWeight: '600', fontFamily: 'inherit', fontSize: '15px', borderRadius: '5px', textWrap: 'wrap', padding: '5px' }} />
+              <input type="text" id="addr" placeholder="Address will appear here" readOnly style={{height: '25px', fontWeight: '600', fontFamily: 'inherit', fontSize: '15px', borderRadius: '5px', textWrap: 'wrap', padding: '5px' }} />
             </div>
         </div>
       )}
