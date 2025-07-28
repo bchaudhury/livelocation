@@ -55,15 +55,24 @@ const LiveLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
+                    // Check if position is available
+                    if (!position || !position.coords) {
+                        const error = new Error("Position data is not available.");
+                        handleLocationError(error);
+                        return;
+                    }
+                    // Update the state with the current position
                     setLatitude(position.coords.latitude);
                     setLongitude(position.coords.longitude);
-
-                    // Optionally, you can also log the position to the console
-                    setError(null);
+                    setError(null); // Clear any previous errors
                 },
                 (err) => {
 
-                    const error = new Error("Geolocation error");
+                    // Handle geolocation errors
+                    setLatitude('Error fetching latitude');
+                    setLongitude('Error fetching longitude');
+
+                    const error = new Error("Geolocation error occurred.");
                     error.code = err.code;
                     handleLocationError(error);
 
@@ -71,6 +80,7 @@ const LiveLocation = () => {
             );
         } else {
 
+            // If geolocation is not supported, set an error message
             setError("Geolocation is not supported by this browser.");
             
         }
@@ -81,25 +91,26 @@ const LiveLocation = () => {
     }, []);
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '2px', fontSize: '1rem', color: '#333', fontWeight: 'bold', backgroundColor: '#dae0aa', padding: '2px', borderRadius: '10px', 
+    <div style={{ textAlign: 'center', marginTop: '2px', fontSize: '1rem', color: '#333', fontWeight: 'bold', backgroundColor: '#dae0aa', padding: '5px', borderRadius: '10px', 
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', width: '80%', maxWidth: '400px', margin: 'auto', border: '2px solid rgb(243, 158, 158)', zIndex: '10', alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center'
      }}>
-      <img src={Logo} alt="Logo" style={{ width: '40px', height: '40px', marginBottom: '0px', borderRadius: '50px', border: '1px solid rgb(176, 212, 118)' }} />
-      <h1 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '500', width: '100%', fontFamily: 'Arial, sans-serif', color: '#32501d', padding: '0px', textDecoration: 'underline' }}>
-        Live Location</h1>
+      <img src={Logo} alt="Logo" style={{ width: '40px', height: '40px', borderRadius: '50px', border: '1px solid rgb(176, 212, 118)', padding: 'auto' }} />
+      <h2 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '600', width: '100%', fontFamily: 'Arial, sans-serif', color: '#32501d', textDecoration: 'underline' }}>
+        Live Location v1.0</h2>
+        <br/>
       {error ? (
         <p>Error: {error}</p>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '600', width: '100%', fontFamily: 'Arial, sans-serif', color: '#975c5c', padding: '10px' }}>
-            <br/>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '600', width: '90%', color: '#975c5c', padding: '10px', fontSize: '10px', border: '2px solid', borderRadius: '10px', backgroundColor: '#f7e3a1ff' }}>
+            
             <p>Latitude: {lattitude}</p>
             <p>Longitude: {longitude}</p>
-            <br/>
+
             <button onClick={getUserAddress}>Get Location</button>
-            <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '200', width: '70%', fontFamily: 'Arial, sans-serif', color: '#1f3f01ff', padding: '5px'}}>(Press the button after lattitude and longitude values are fetched)</p>
+            <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '200', width: '70%', fontFamily: 'Arial, sans-serif', color: '#1f3f01ff', padding: '5px', fontSize: '12px'}}>** Click the button after lattitude and longitude values are fetched.</p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', marginTop: '5px' }}>
-              <img src={Location_icon} alt="Location Icon" style={{ width: '20px', height: '20px'}} />
-              <input type="label" id="addr" placeholder="Address will appear here" readOnly style={{ width: '80%', border: '1px solid #fff', fontWeight: '600', borderRadius: '5px', height: '25%' }} />
+              <img src={Location_icon} alt="Location Icon" style={{ width: '30px', height: '30px'}} />
+              <input type="text" id="addr" placeholder="Address will appear here" readOnly style={{height: '30px', fontWeight: '600', fontFamily: 'inherit', fontSize: '15px', borderRadius: '5px', textWrap: 'wrap', padding: '5px' }} />
             </div>
         </div>
       )}
