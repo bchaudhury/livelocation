@@ -40,7 +40,7 @@ const LiveLocation = () => {
 
                 if (data && data.display_name) {
 
-                   document.getElementById('addr').value = data.display_name;
+                   document.getElementById('addr').value = data.display_name || "Address not found";
 
                 }
 
@@ -114,7 +114,7 @@ const LiveLocation = () => {
             <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '200', width: '70%', fontFamily: 'Arial, sans-serif', color: '#3d3510ff', padding: '5px', fontSize: '12px'}}>** Click the button after lattitude and longitude values are fetched.</p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', marginTop: '5px' }}>
               <img src={Location_icon} alt="Location Icon" style={{ width: '30px', height: '30px'}} />
-              <input type="text" id="addr" placeholder="Address will appear here" readOnly style={{height: '25px', fontWeight: '600', fontFamily: 'inherit', fontSize: '15px', borderRadius: '5px', textWrap: 'wrap', padding: '5px' }} />
+              <input type="label" id="addr" placeholder="Address will appear here" readOnly style={{height: '25px', fontWeight: '500', fontFamily: 'inherit', fontSize: '15px', borderRadius: '5px', textWrap: 'wrap', padding: '5px' }} />
             </div>
         </div>
       )}
